@@ -1,0 +1,15 @@
+<%= content_for :javascripts_head do %>
+<%= javascript_include_tag 'http://cdn.sublimevideo.net/js/4on6wa5x.js' %>
+<% end %>
+
+<div class="videos_content">
+	<div class="layout_1">
+		<div class="col1">
+		  <div id="<%= @video.title %>" class="sublime-box">
+			  <%= video_tag [@video.mp4.url(:format => "mp4"), @video.ogv.url(:format => "ogv"), @video.webm.url(:format => "webm")], :class => "sublime", :size => "768x428", :poster => "/images/games/tera/tera_3M_poster.jpg", :preload => "none" %>
+			</div>
+		</div>
+	</div>
+</div>
+
+

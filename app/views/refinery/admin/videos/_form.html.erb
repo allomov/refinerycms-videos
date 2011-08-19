@@ -1,0 +1,18 @@
+<%= form_for [main_app, :admin, @video], :url => main_app.upload_refinery_admin_videos_path, :html => { :method => :post, :multipart => true } do |f| -%>
+  <%= render :partial => "/refinery/admin/error_messages", :locals => {
+          :object => @video,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.file_field :video, :multiple => (true unless @video.persisted?) %>
+  </div>
+  
+  <%= render :partial => "/refinery/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'refinery.videos.video'),
+                :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => 'hi')
+              } %>
+<% end -%>

@@ -1,0 +1,41 @@
+<% content_for :stylesheets do %>
+<style type="text/css">
+  .bar {
+    width: 300px;
+  }
+  #progress {
+    background: #eee;
+    border: 1px solid #222;
+    margin-top: 20px;
+  }
+  #progressbar {
+    width: 0px;
+    height: 24px;
+    background: #333;
+  }
+</style>
+<% end %>
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    $('form').uploadProgress({
+  		jqueryPath: "/javascripts/jquery.js",
+  		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
+  		uploading: function(upload) {
+  		  $('#percents').html(upload.percents+'%');
+  		},
+  		progressBar: "#progressbar",
+  		progressUrl: "/progress",
+  		interval: 2000,
+  		dataType: 'json'
+    });
+  });
+</script>
+<%= javascript_include_tag "jquery.uploadProgress.js" %>
+<% end %>
+<%= render :partial => "form" %>
+
+<div id="progress" class="bar">
+  <div id="progressbar">&nbsp;</div>
+  <div id="percents"></div>
+</div>
