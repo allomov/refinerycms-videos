@@ -2,12 +2,19 @@ require 'spec_helper'
 
 describe 'upload video' do
   login_refinery_user
-  
-  context "when no videos" do
-    it "invites to add one" do
+    
+  describe "new/create" do
+    it "should go to new video page" do
       visit refinery_admin_videos_path
       
-      page.should have_content("There are no Videos yet. Click \"Add New Video\" to add your first video.")
+      click_link "Add new video"
+      
+      attach_file "video_video", Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
+      click_button "Save"
+      
+      page.should have_content("'Test Movie' was successfully added.")
+      Refinery::Video.count.should equal(1)
     end
   end
+
 end

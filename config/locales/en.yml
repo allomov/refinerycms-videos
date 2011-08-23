@@ -10,7 +10,7 @@ en:
     admin:
       videos:
         actions:
-          create_new: Add New Video
+          create_new: Add new video
           reorder: Reorder Videos
           reorder_done: Done Reordering Videos
           resque: View Encoding Queue
