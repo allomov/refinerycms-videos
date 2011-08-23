@@ -6,7 +6,8 @@ module Refinery
     
     describe "validations" do
       it "rejects nil value for raw" do
-        Video.new(@valid_attributes.merge(:raw => nil)).should_not be_valid
+        video.raw = nil
+        video.should_not be_valid
       end
     end
 

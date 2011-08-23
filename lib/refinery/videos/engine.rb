@@ -37,7 +37,7 @@ module Refinery
         Refinery::Plugin.register do |plugin|
           plugin.name = "videos"
           plugin.url = app.routes.url_helpers.refinery_admin_videos_path
-          plugin.menu_match = /^\/?(admin|refinery)\/?(gumballs|gumball_entries)/
+          plugin.menu_match = /^\/?(admin|refinery)\/videos/
           plugin.activity = {
             :class => Video,
             :title => 'name'
