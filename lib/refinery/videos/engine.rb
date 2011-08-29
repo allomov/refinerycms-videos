@@ -3,10 +3,6 @@ require 'dragonfly-ffmpeg'
 module Refinery
   module Videos
     class Engine < Rails::Engine      
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
-      
       initializer 'videos-with-dragonfly', :before => :load_config_initializers do |app|
         app_videos = Dragonfly[:videos]
         app_videos.configure_with(:rails) do |c|
