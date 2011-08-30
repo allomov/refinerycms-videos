@@ -24,6 +24,12 @@ module Refinery
         FileUtils.rm(video_path)
       end
     end
+    
+    def async_encode(*formats)
+      formats.each do |format|
+        Resque.enqueue(Refinery::EncodeVideo, self.id, format)
+      end
+    end
   
     # Returns a titleized version of the filename
     # my_file.pdf returns My File

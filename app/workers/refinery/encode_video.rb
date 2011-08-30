@@ -1,6 +1,6 @@
 module Refinery
   class EncodeVideo
-    @queue = 'encode_video'
+    @queue = :encode_video
   
     def self.perform(video_id, format, options = {})
       options.symbolize_keys!

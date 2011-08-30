@@ -9,9 +9,7 @@ module Refinery
             
       def create
         @video = Video.create_from_nginx_upload(params[:video])
-        Resque.enqueue(EncodeVideo, @video.id, :mp4)
-        Resque.enqueue(EncodeVideo, @video.id, :ogv)
-        Resque.enqueue(EncodeVideo, @video.id, :webm)
+        @video.async_encode(:mp4, :ogv, :webm)
       
         redirect_to main_app.refinery_admin_videos_path, :notice => "Video successfully created. Encoding process will start shortly."
       end
