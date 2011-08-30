@@ -13,7 +13,7 @@ module Refinery
         Resque.enqueue(EncodeVideo, @video.id, :ogv)
         Resque.enqueue(EncodeVideo, @video.id, :webm)
       
-        redirect_to refinery_admin_videos_path, :notice => "Video successfully created. Encoding process will start shortly."
+        redirect_to main_app.refinery_admin_videos_path, :notice => "Video successfully created. Encoding process will start shortly."
       end
       alias_method :upload, :create
     end
