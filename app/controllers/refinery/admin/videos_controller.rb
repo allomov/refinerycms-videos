@@ -1,6 +1,6 @@
 module Refinery
   module Admin
-    class VideosController < ::Admin::BaseController
+    class VideosController < Refinery::AdminController
       
       respond_to :html
 
