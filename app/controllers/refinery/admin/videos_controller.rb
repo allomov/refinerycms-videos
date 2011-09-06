@@ -24,13 +24,12 @@ module Refinery
         respond_with [:refinery_admin, @video], :location => main_app.refinery_admin_videos_path
       end
       alias_method :upload, :create
-    end
-    
-    protected
       
-      def nginx_upload?
-        params[:video][:path] && params[:video][:file_name]
-      end
+      protected
 
+        def nginx_upload?
+          params[:video][:path] && params[:video][:file_name]
+        end
+    end
   end
 end
