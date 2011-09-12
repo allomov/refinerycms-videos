@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822185624) do
+ActiveRecord::Schema.define(:version => 20110911182459) do
+
+  create_table "refinery_encoded_videos", :force => true do |t|
+    t.string   "title"
+    t.string   "video_name"
+    t.string   "video_format"
+    t.string   "video_uid"
+    t.string   "video_mime_type"
+    t.integer  "video_v_height"
+    t.integer  "video_v_width"
+    t.string   "video_ext"
+    t.float    "video_frame_rate"
+    t.float    "video_duration"
+    t.integer  "video_bitrate"
+    t.integer  "video_size"
+    t.string   "video_stream"
+    t.string   "video_codec"
+    t.string   "video_colorspace"
+    t.string   "video_resolution"
+    t.string   "video_audio_stream"
+    t.string   "video_audio_codec"
+    t.integer  "video_audio_sample_rate"
+    t.integer  "video_audio_channels"
+    t.integer  "raw_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_encoded_videos", ["id"], :name => "index_refinery_encoded_videos_on_id"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -152,27 +180,28 @@ ActiveRecord::Schema.define(:version => 20110822185624) do
 
   create_table "refinery_videos", :force => true do |t|
     t.string   "title"
-    t.string   "raw_name"
-    t.string   "raw_uid"
+    t.string   "video_name"
+    t.string   "video_format"
+    t.string   "video_uid"
     t.string   "mp4_uid"
     t.string   "ogv_uid"
     t.string   "webm_uid"
-    t.string   "raw_mime_type"
-    t.integer  "raw_v_height"
-    t.integer  "raw_v_width"
-    t.string   "raw_ext"
-    t.float    "raw_frame_rate"
-    t.float    "raw_duration"
-    t.integer  "raw_bitrate"
-    t.integer  "raw_size"
-    t.string   "raw_stream"
-    t.string   "raw_codec"
-    t.string   "raw_colorspace"
-    t.string   "raw_resolution"
-    t.string   "raw_audio_stream"
-    t.string   "raw_audio_codec"
-    t.integer  "raw_audio_sample_rate"
-    t.integer  "raw_audio_channels"
+    t.string   "video_mime_type"
+    t.integer  "video_v_height"
+    t.integer  "video_v_width"
+    t.string   "video_ext"
+    t.float    "video_frame_rate"
+    t.float    "video_duration"
+    t.integer  "video_bitrate"
+    t.integer  "video_size"
+    t.string   "video_stream"
+    t.string   "video_codec"
+    t.string   "video_colorspace"
+    t.string   "video_resolution"
+    t.string   "video_audio_stream"
+    t.string   "video_audio_codec"
+    t.integer  "video_audio_sample_rate"
+    t.integer  "video_audio_channels"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

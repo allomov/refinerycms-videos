@@ -29,10 +29,14 @@ module Refinery
           visit new_refinery_admin_video_path
 
           attach_file "video_video", Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
+          
+          video = Video.new(:video => Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov"))
+          Video.stub(:create).and_return(video)
+          video.should_receive(:async_encode).with(:mp4, :ogv, :webm)
+          
           click_button "Save"
 
-          page.should have_content("'Test Movie' was successfully added.")
-          Refinery::Video.count.should equal(1)
+          page.should have_content("Test Movie' successfully added. Encoding process will start shortly.")
         end
       end
     end

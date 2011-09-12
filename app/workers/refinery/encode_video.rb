@@ -6,9 +6,10 @@ module Refinery
       options.symbolize_keys!
     
       @video = Video.find(video_id)
-      encoded_video = @video.raw.html5(format, options).apply
-      @video.send("#{format}=", encoded_video.temp_object)
-      @video.save
+      @encoded_video = EncodedVideo.new(:raw => @video)
+      # Encode the raw video and assign it to the EncodedVideo object
+      @encoded_video.video = @video.video.html5(format, options).apply
+      @encoded_video.save!
     end
   end
 end

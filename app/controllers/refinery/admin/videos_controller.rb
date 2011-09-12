@@ -18,7 +18,7 @@ module Refinery
         
         if @video
           @video.async_encode(:mp4, :ogv, :webm)
-          flash[:notice] = t('encoding', :scope => 'refinery.admin.videos')
+          flash[:notice] = t('encoding', :scope => 'refinery.admin.videos', :title => @video.title)
         end
         
         respond_with [:refinery_admin, @video], :location => main_app.refinery_admin_videos_path

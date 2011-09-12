@@ -9,7 +9,7 @@ en:
         title: Videos
     admin:
       videos:
-        create_success: Video successfully created. Encoding process will start shortly.
+        encoding: "'%{title}' successfully added. Encoding process will start shortly."
         actions:
           create_new: Add new video
           reorder: Reorder Videos

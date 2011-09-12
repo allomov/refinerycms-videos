@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git'
+gem 'refinerycms', '~> 2.0.0', :git => 'git://github.com/resolve/refinerycms.git'
 gem 'awesome_nested_set', :git => 'git://github.com/collectiveidea/awesome_nested_set.git'
 
 group :assets do
@@ -13,7 +13,10 @@ end
 
 gem 'jquery-rails'
 
-group :development, :test do  
+group :development, :test do
+  gem 'refinerycms-testing', '~> 2.0.0', :require => false
+  gem 'factory_girl_rails', :require => false
+  
   require 'rbconfig'
 
   platforms :mswin, :mingw do

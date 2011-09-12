@@ -1,17 +1,14 @@
 module Refinery
   class Video < ActiveRecord::Base
 
-    video_accessor :raw  
-    video_accessor :mp4
-    video_accessor :ogv
-    video_accessor :webm
+    has_many :encoded_videos, :foreign_key => :raw_id
     
-    attr_accessible :raw
+    video_accessor :video
+    attr_accessible :video
+    delegate :name, :format, :mime_type, :height, :width, :ext, :resolution, :to => :video
+        
+    validates :video, :presence => true
 
-    validates :raw, :presence => true
-  
-    delegate :name, :mime_type, :height, :width, :ext, :resolution, :to => :raw
-  
     acts_as_indexed :fields => [:name]
 
     def self.create_from_nginx_upload(params)

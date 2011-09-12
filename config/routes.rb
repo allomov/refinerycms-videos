@@ -1,6 +1,6 @@
 Refinery::Application.routes.draw do
   scope(:module => 'refinery') do
-    resources :videos, :only => [:index, :show]
+    resources :videos, :only => [:show]
   
     scope(:path => 'refinery', :as => 'refinery_admin', :module => 'admin') do
       resources :videos, :except => :show do

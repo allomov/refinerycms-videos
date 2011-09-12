@@ -1,14 +1,10 @@
-class CreateVideos < ActiveRecord::Migration
-
-  def up
-    create_table ::Refinery::Video.table_name do |t|
+class CreateRefineryEncodedVideos < ActiveRecord::Migration
+  def change
+    create_table ::Refinery::EncodedVideo.table_name do |t|
       t.string :title
       t.string :video_name
       t.string :video_format
       t.string :video_uid
-      t.string :mp4_uid
-      t.string :ogv_uid
-      t.string :webm_uid
       t.string :video_mime_type
       t.integer :video_v_height
       t.integer :video_v_width
@@ -21,25 +17,15 @@ class CreateVideos < ActiveRecord::Migration
       t.string :video_codec
       t.string :video_colorspace
       t.string :video_resolution
-      t.integer :video_v_width
-      t.integer :video_v_height
       t.string :video_audio_stream
       t.string :video_audio_codec
       t.integer :video_audio_sample_rate
       t.integer :video_audio_channels
-      
+      t.integer :raw_id
+
       t.timestamps
     end
-
-    add_index ::Refinery::Video.table_name, :id
+    
+    add_index ::Refinery::EncodedVideo.table_name, :id
   end
-
-  def down
-    ::Refinery::UserPlugin.destroy_all(:name => "videos")
-
-    ::Refinery::Page.delete_all(:link_url => "/videos")
-
-    drop_table ::Refinery::Video.table_name
-  end
-
 end
