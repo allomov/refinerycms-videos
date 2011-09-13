@@ -4,31 +4,31 @@ module Refinery
       
       respond_to :html
 
-      crudify :'refinery/video',
+      crudify :'refinery/raw_video',
               :title_attribute => 'title',
               :searchable => true,
               :sortable => false
             
       def create
         if nginx_upload?
-          @video = Video.create_from_nginx_upload(params[:video])
+          @raw_video = RawVideo.create_from_nginx_upload(params[:raw_video])
         else
-          @video = Video.create(params[:video])
+          @raw_video = RawVideo.create(params[:raw_video])
         end
         
-        if @video
-          @video.async_encode(:mp4, :ogv, :webm)
-          flash[:notice] = t('encoding', :scope => 'refinery.admin.videos', :title => @video.title)
+        if @raw_video
+          @raw_video.async_encode(:mp4, :ogv, :webm)
+          flash[:notice] = t('encoding', :scope => 'refinery.admin.videos', :title => @raw_video.title)
         end
         
-        respond_with [:refinery_admin, @video], :location => main_app.refinery_admin_videos_path
+        respond_with [:refinery_admin, @raw_video], :location => main_app.refinery_admin_videos_path
       end
       alias_method :upload, :create
       
       protected
 
         def nginx_upload?
-          params[:video][:path] && params[:video][:file_name]
+          params[:raw_video][:path] && params[:raw_video][:file_name]
         end
     end
   end

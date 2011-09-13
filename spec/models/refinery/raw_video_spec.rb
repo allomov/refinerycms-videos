@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 module Refinery
-  describe Video do
-    let!(:video) { FactoryGirl.create(:video) }
+  describe RawVideo do
+    let!(:raw_video) { FactoryGirl.create(:raw_video) }
     
     describe "validations" do
       it "rejects nil value for raw" do
-        video.video = nil
-        video.should_not be_valid
+        raw_video.video = nil
+        raw_video.should_not be_valid
       end
     end
     

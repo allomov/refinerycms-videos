@@ -1,5 +1,5 @@
 module Refinery
-  class Video < ActiveRecord::Base
+  class RawVideo < ActiveRecord::Base
 
     has_many :encoded_videos, :foreign_key => :raw_id
     
@@ -16,7 +16,7 @@ module Refinery
       FileUtils.mv(params[:path], video_path)
       params[:raw] = Pathname.new(video_path)
       begin
-        new_video = Video.create(params)
+        new_video = self.create(params)
       ensure
         FileUtils.rm(video_path)
       end

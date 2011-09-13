@@ -113,6 +113,36 @@ ActiveRecord::Schema.define(:version => 20110911182459) do
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
+  create_table "refinery_raw_videos", :force => true do |t|
+    t.string   "title"
+    t.string   "video_name"
+    t.string   "video_format"
+    t.string   "video_uid"
+    t.string   "mp4_uid"
+    t.string   "ogv_uid"
+    t.string   "webm_uid"
+    t.string   "video_mime_type"
+    t.integer  "video_v_height"
+    t.integer  "video_v_width"
+    t.string   "video_ext"
+    t.float    "video_frame_rate"
+    t.float    "video_duration"
+    t.integer  "video_bitrate"
+    t.integer  "video_size"
+    t.string   "video_stream"
+    t.string   "video_codec"
+    t.string   "video_colorspace"
+    t.string   "video_resolution"
+    t.string   "video_audio_stream"
+    t.string   "video_audio_codec"
+    t.integer  "video_audio_sample_rate"
+    t.integer  "video_audio_channels"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_raw_videos", ["id"], :name => "index_refinery_raw_videos_on_id"
+
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
     t.string   "file_name"
@@ -177,36 +207,6 @@ ActiveRecord::Schema.define(:version => 20110911182459) do
   end
 
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
-
-  create_table "refinery_videos", :force => true do |t|
-    t.string   "title"
-    t.string   "video_name"
-    t.string   "video_format"
-    t.string   "video_uid"
-    t.string   "mp4_uid"
-    t.string   "ogv_uid"
-    t.string   "webm_uid"
-    t.string   "video_mime_type"
-    t.integer  "video_v_height"
-    t.integer  "video_v_width"
-    t.string   "video_ext"
-    t.float    "video_frame_rate"
-    t.float    "video_duration"
-    t.integer  "video_bitrate"
-    t.integer  "video_size"
-    t.string   "video_stream"
-    t.string   "video_codec"
-    t.string   "video_colorspace"
-    t.string   "video_resolution"
-    t.string   "video_audio_stream"
-    t.string   "video_audio_codec"
-    t.integer  "video_audio_sample_rate"
-    t.integer  "video_audio_channels"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "refinery_videos", ["id"], :name => "index_refinery_videos_on_id"
 
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"

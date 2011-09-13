@@ -4,9 +4,9 @@ module Refinery
     respond_to :html
 
     def show
-      @video = Video.find(params[:id])
+      @raw_video = RawVideo.find(params[:id])
 
-      respond_with(@video)
+      respond_with(@raw_video)
     end
 
   end

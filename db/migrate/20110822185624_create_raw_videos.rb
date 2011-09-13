@@ -1,7 +1,7 @@
-class CreateVideos < ActiveRecord::Migration
+class CreateRawVideos < ActiveRecord::Migration
 
   def up
-    create_table ::Refinery::Video.table_name do |t|
+    create_table ::Refinery::RawVideo.table_name do |t|
       t.string :title
       t.string :video_name
       t.string :video_format
@@ -31,7 +31,7 @@ class CreateVideos < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index ::Refinery::Video.table_name, :id
+    add_index ::Refinery::RawVideo.table_name, :id
   end
 
   def down
@@ -39,7 +39,7 @@ class CreateVideos < ActiveRecord::Migration
 
     ::Refinery::Page.delete_all(:link_url => "/videos")
 
-    drop_table ::Refinery::Video.table_name
+    drop_table ::Refinery::RawVideo.table_name
   end
 
 end

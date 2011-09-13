@@ -1,7 +1,7 @@
 module Refinery
   class EncodedVideo < ActiveRecord::Base
 
-    belongs_to :raw, :class_name => 'Refinery::Video'
+    belongs_to :raw, :class_name => 'Refinery::RawVideo'
     
     video_accessor :video
     attr_accessible :video
