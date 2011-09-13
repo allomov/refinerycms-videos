@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20110911182459) do
 
   create_table "refinery_encoded_videos", :force => true do |t|
     t.string   "title"
+    t.string   "format"
     t.string   "file_name"
-    t.string   "file_format"
     t.string   "file_uid"
     t.string   "file_mime_type"
     t.integer  "file_v_height"
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(:version => 20110911182459) do
   create_table "refinery_raw_videos", :force => true do |t|
     t.string   "title"
     t.string   "file_name"
-    t.string   "file_format"
     t.string   "file_uid"
     t.string   "file_mime_type"
     t.integer  "file_v_height"

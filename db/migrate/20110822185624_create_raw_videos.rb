@@ -1,9 +1,7 @@
 class CreateRawVideos < ActiveRecord::Migration
   def up
     create_table ::Refinery::RawVideo.table_name do |t|
-      t.string :title
       t.string :file_name
-      t.string :file_format
       t.string :file_uid
       t.string :file_mime_type
       t.integer :file_v_height

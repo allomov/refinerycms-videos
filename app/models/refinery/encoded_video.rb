@@ -5,16 +5,17 @@ module Refinery
     
     video_accessor :file
     attr_accessible :file
-    delegate :name, :format, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
+    delegate :name, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
     delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
     delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
 
     validates :file, :presence => true
+    validates :raw_video, :presence => true
+    validates :format, :presence => true
   
     acts_as_indexed :fields => [:name]
     
-    scope :by_raw, proc { |vid| where(:raw_video_id => vid.id) }
-    scope :by_format, proc { |frmt| where(:video_format => frmt) }
+    scope :by_format, proc { |frmt| where(:format => frmt) }
     
   end
 end

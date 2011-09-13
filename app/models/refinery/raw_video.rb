@@ -5,7 +5,7 @@ module Refinery
     
     video_accessor :file
     attr_accessible :file
-    delegate :name, :format, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
+    delegate :name, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
     delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
     delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
 
@@ -27,8 +27,11 @@ module Refinery
     def encode(format, options = {})
       options.symbolize_keys!
       
-      encoded_file = self.file.html5(format, options).apply
-      EncodedVideo.create!(:raw_video => self, :file => encoded_file)
+      EncodedVideo.create! do |encoded_video|
+        encoded_video.raw_video = self
+        encoded_video.file = self.file.html5(format, options).apply
+        encoded_video.format = format.to_s
+      end
     end
     
     def async_encode(*formats)
