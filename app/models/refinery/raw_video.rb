@@ -24,6 +24,13 @@ module Refinery
       end
     end
     
+    def encode(format, options = {})
+      options.symbolize_keys!
+      
+      encoded_file = self.file.html5(format, options).apply
+      EncodedVideo.create!(:raw_video => self, :file => encoded_file)
+    end
+    
     def async_encode(*formats)
       formats.each { |format| Resque.enqueue(Refinery::EncodeVideo, self.id, format) }
     end
