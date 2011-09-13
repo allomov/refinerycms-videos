@@ -1,7 +1,7 @@
 module Refinery
   class RawVideo < ActiveRecord::Base
 
-    has_many :encoded_videos, :foreign_key => :raw_id
+    has_many :encoded_videos
     
     video_accessor :video
     attr_accessible :video

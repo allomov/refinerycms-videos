@@ -21,7 +21,7 @@ class CreateRefineryEncodedVideos < ActiveRecord::Migration
       t.string :video_audio_codec
       t.integer :video_audio_sample_rate
       t.integer :video_audio_channels
-      t.integer :raw_id
+      t.integer :raw_video_id
 
       t.timestamps
     end

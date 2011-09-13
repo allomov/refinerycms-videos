@@ -1,7 +1,7 @@
 module Refinery
   class EncodedVideo < ActiveRecord::Base
 
-    belongs_to :raw, :class_name => 'Refinery::RawVideo'
+    belongs_to :raw_video
     
     video_accessor :video
     attr_accessible :video
@@ -11,7 +11,7 @@ module Refinery
   
     acts_as_indexed :fields => [:name]
     
-    scope :by_raw, proc { |vid| where(:raw_id => vid.id) }
+    scope :by_raw, proc { |vid| where(:raw_video_id => vid.id) }
     scope :by_format, proc { |frmt| where(:video_format => frmt) }
   end
 end

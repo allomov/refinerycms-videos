@@ -8,11 +8,11 @@ module Refinery
       let(:encoded_video) { FactoryGirl.create(:encoded_video) }
       
       describe "#show" do
-        before(:each) { visit video_path(encoded_video.raw) }
+        before(:each) { visit video_path(encoded_video.raw_video) }
         
         it "should display the raw video" do
           pending
-          page.should have_selector('video source', :src => encoded_video.raw.video.url)
+          page.should have_selector('video source', :src => encoded_video.raw_video.video.url)
         end
         
         it "should display the encoded video" do
