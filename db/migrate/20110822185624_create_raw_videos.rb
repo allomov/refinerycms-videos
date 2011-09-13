@@ -2,25 +2,25 @@ class CreateRawVideos < ActiveRecord::Migration
   def up
     create_table ::Refinery::RawVideo.table_name do |t|
       t.string :title
-      t.string :video_name
-      t.string :video_format
-      t.string :video_uid
-      t.string :video_mime_type
-      t.integer :video_v_height
-      t.integer :video_v_width
-      t.string :video_ext
-      t.float :video_frame_rate
-      t.float :video_duration
-      t.integer :video_bitrate
-      t.integer :video_size
-      t.string :video_stream
-      t.string :video_codec
-      t.string :video_colorspace
-      t.string :video_resolution
-      t.string :video_audio_stream
-      t.string :video_audio_codec
-      t.integer :video_audio_sample_rate
-      t.integer :video_audio_channels
+      t.string :file_name
+      t.string :file_format
+      t.string :file_uid
+      t.string :file_mime_type
+      t.integer :file_v_height
+      t.integer :file_v_width
+      t.string :file_ext
+      t.float :file_frame_rate
+      t.float :file_duration
+      t.integer :file_bitrate
+      t.integer :file_size
+      t.string :file_stream
+      t.string :file_codec
+      t.string :file_colorspace
+      t.string :file_resolution
+      t.string :file_audio_stream
+      t.string :file_audio_codec
+      t.integer :file_audio_sample_rate
+      t.integer :file_audio_channels
       
       t.timestamps
     end

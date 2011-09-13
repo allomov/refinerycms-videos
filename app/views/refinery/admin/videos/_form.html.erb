@@ -5,7 +5,7 @@
         } %>
   
   <div class='field'>
-    <%= f.file_field :video, :multiple => (true unless @raw_video.persisted?) %>
+    <%= f.file_field :file, :multiple => (true unless @raw_video.persisted?) %>
   </div>
   
   <%= render :partial => "/refinery/admin/form_actions",

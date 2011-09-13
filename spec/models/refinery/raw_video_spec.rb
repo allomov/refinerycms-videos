@@ -6,7 +6,7 @@ module Refinery
     
     describe "validations" do
       it "rejects nil value for raw" do
-        raw_video.video = nil
+        raw_video.file = nil
         raw_video.should_not be_valid
       end
     end

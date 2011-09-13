@@ -28,9 +28,9 @@ module Refinery
         it "should successfully add video" do
           visit new_refinery_admin_video_path
 
-          attach_file "raw_video_video", Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
+          attach_file "raw_video_file", Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
           
-          raw_video = RawVideo.new(:video => Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov"))
+          raw_video = RawVideo.new(:file => Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov"))
           RawVideo.stub(:create).and_return(raw_video)
           raw_video.should_receive(:async_encode).with(:mp4, :ogv, :webm)
           

@@ -3,20 +3,20 @@ module Refinery
 
     has_many :encoded_videos
     
-    video_accessor :video
-    attr_accessible :video
-    delegate :name, :format, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :video
-    delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :video
-    delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :video
-        
-    validates :video, :presence => true
+    video_accessor :file
+    attr_accessible :file
+    delegate :name, :format, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
+    delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
+    delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
+
+    validates :file, :presence => true
 
     acts_as_indexed :fields => [:name]
 
     def self.create_from_nginx_upload(params)
       video_path = File.join(File.dirname(params[:path]), params[:file_name])
       FileUtils.mv(params[:path], video_path)
-      params[:raw] = Pathname.new(video_path)
+      params[:file] = Pathname.new(video_path)
       begin
         new_video = self.create(params)
       ensure
@@ -37,5 +37,6 @@ module Refinery
     def encoded?
       self.mp4.present? && self.ogv.present? && self.webm.present?
     end
+    
   end
 end
