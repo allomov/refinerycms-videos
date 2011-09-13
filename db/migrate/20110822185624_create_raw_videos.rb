@@ -18,8 +18,6 @@ class CreateRawVideos < ActiveRecord::Migration
       t.string :video_codec
       t.string :video_colorspace
       t.string :video_resolution
-      t.integer :video_v_width
-      t.integer :video_v_height
       t.string :video_audio_stream
       t.string :video_audio_codec
       t.integer :video_audio_sample_rate
