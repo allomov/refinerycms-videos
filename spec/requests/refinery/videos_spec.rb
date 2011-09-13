@@ -10,9 +10,8 @@ module Refinery
       describe "#show" do
         before(:each) { visit video_path(encoded_video.raw_video) }
                 
-        it "should display the encoded video" do
-          pending # This selector doesn't check for the SRC value - need to fix this.
-          page.should have_selector('video source', :src => encoded_video.file.url)
+        it "should contain a video player with the encoded video as a source" do
+          page.should have_xpath('//video/source', :src => encoded_video.url)
         end
       end
     end
