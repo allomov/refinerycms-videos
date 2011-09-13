@@ -1,5 +1,4 @@
 class CreateRawVideos < ActiveRecord::Migration
-
   def up
     create_table ::Refinery::RawVideo.table_name do |t|
       t.string :title

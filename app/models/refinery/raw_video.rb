@@ -5,7 +5,9 @@ module Refinery
     
     video_accessor :video
     attr_accessible :video
-    delegate :name, :format, :mime_type, :height, :width, :ext, :resolution, :to => :video
+    delegate :name, :format, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :video
+    delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :video
+    delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :video
         
     validates :video, :presence => true
 
