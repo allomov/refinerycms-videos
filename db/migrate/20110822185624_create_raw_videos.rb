@@ -6,9 +6,6 @@ class CreateRawVideos < ActiveRecord::Migration
       t.string :video_name
       t.string :video_format
       t.string :video_uid
-      t.string :mp4_uid
-      t.string :ogv_uid
-      t.string :webm_uid
       t.string :video_mime_type
       t.integer :video_v_height
       t.integer :video_v_width
