@@ -2,12 +2,12 @@ require 'spec_helper'
 
 module Refinery
   describe RawVideo do
-    let(:raw_video) { FactoryGirl.create(:raw_video) }
+    subject { FactoryGirl.create(:raw_video) }
     
     describe "validations" do
       it "rejects nil value for file" do
-        raw_video.file = nil
-        raw_video.should_not be_valid
+        subject.file = nil
+        subject.should_not be_valid
       end
     end
     
@@ -33,9 +33,9 @@ module Refinery
       before(:each) { EncodedVideo.delete_all }
       
       it "should create a valid new encoded video" do
-        encoded_video = raw_video.encode(:mp4)
+        encoded_video = subject.encode(:mp4)
         
-        encoded_video.raw_video.should == raw_video
+        encoded_video.raw_video.should == subject
         encoded_video.format.should == 'mp4'
         encoded_video.file.should_not be_nil
       end
@@ -44,7 +44,7 @@ module Refinery
     describe "delegators" do
       describe "url" do
         it "should return the same value as the url of file" do
-          encoded_video.url.should == encoded_video.file.url
+          subject.url.should == subject.file.url
         end
       end
     end
