@@ -41,5 +41,13 @@ module Refinery
       end
     end
 
+    describe "delegators" do
+      describe "url" do
+        it "should return the same value as the url of file" do
+          encoded_video.url.should == encoded_video.file.url
+        end
+      end
+    end
+    
   end
 end
