@@ -11,7 +11,7 @@ module Refinery
             
       def create
         if nginx_upload?
-          @raw_video = RawVideo.create_from_nginx_upload(params[:raw_video])
+          @raw_video = RawVideo.create_from_nginx_upload(nginx_params[:raw_video])
         else
           @raw_video = RawVideo.create(params[:raw_video])
         end
@@ -28,7 +28,13 @@ module Refinery
       protected
 
         def nginx_upload?
-          params[:raw_video][:path] && params[:raw_video][:file_name]
+          # TODO: Make this configurable
+          params[:nginx_upload]
+        end
+        
+        def nginx_params
+          # TODO: Make this configurable
+          params[:nginx_upload]
         end
     end
   end
