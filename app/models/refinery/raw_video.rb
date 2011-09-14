@@ -5,6 +5,10 @@ module Refinery
     
     video_accessor :file
     attr_accessible :file
+    
+    # NGINX upload module - mass assignables
+    attr_accessible :path, :file_name, :content_type
+    
     delegate :name, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
     delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
     delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
@@ -38,9 +42,7 @@ module Refinery
     def async_encode(*formats)
       formats.each { |format| Resque.enqueue(Refinery::EncodeVideo, self.id, format) }
     end
-  
-    # Returns a titleized version of the filename
-    # my_file.pdf returns My File
+
     def title
       CGI::unescape(name.to_s).gsub(/\.\w+$/, '').titleize
     end
