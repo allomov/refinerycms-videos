@@ -6,9 +6,6 @@ module Refinery
     video_accessor :file
     attr_accessible :file
     
-    # NGINX upload module - mass assignables
-    attr_accessible :path, :file_name, :content_type
-    
     delegate :name, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
     delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
     delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
@@ -18,12 +15,11 @@ module Refinery
 
     acts_as_indexed :fields => [:name]
 
-    def self.create_from_nginx_upload(params)
-      video_path = File.join(File.dirname(params[:path]), params[:file_name])
-      FileUtils.mv(params[:path], video_path)
-      params[:file] = Pathname.new(video_path)
+    def self.create_from_nginx_upload(nginx_params)
+      video_path = File.join(File.dirname(nginx_params[:path]), nginx_params[:file_name])
+      FileUtils.mv(nginx_params[:path], video_path)
       begin
-        new_video = self.create(params)
+        new_video = self.create(:file => Pathname.new(video_path))
       ensure
         FileUtils.rm(video_path)
       end
