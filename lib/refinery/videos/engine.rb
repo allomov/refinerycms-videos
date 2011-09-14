@@ -36,7 +36,8 @@ module Refinery
           plugin.menu_match = /^\/?(admin|refinery)\/videos/
           plugin.activity = {
             :class => RawVideo,
-            :title => 'name'
+            :title => 'name',
+            :url => 'refinery_admin_video_path'
           }
         end
       end

@@ -42,6 +42,21 @@ module Refinery
             pending
           end
         end
+        
+        context "when has a raw video with all encoded children" do
+          before(:all) do
+            @raw_video = FactoryGirl.create(:raw_video_with_all_encoded)
+            visit refinery_admin_videos_path
+          end
+          
+          it "should display one video" do            
+            page.should have_content(@raw_video.title)
+          end
+          
+          it "should not say the video is currently encoding" do            
+            page.should_not have_content("Video is encoding")
+          end
+        end
       end
 
       describe "create new video" do
