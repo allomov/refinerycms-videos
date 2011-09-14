@@ -2,8 +2,8 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'refinerycms', '~> 2.0.0', :git => 'git://github.com/resolve/refinerycms.git'
-gem 'awesome_nested_set', :git => 'git://github.com/collectiveidea/awesome_nested_set.git'
+# Uncomment if developing
+# gem 'refinerycms', '~> 2.0.0', :path => '~/Code/refinerycms'
 
 group :assets do
   gem 'sass-rails', '~> 3.1.0'

@@ -40,6 +40,32 @@ module Refinery
         encoded_video.file.should_not be_nil
       end
     end
+    
+    describe ".ecoded?" do
+      context "when has no encoded children" do        
+        subject { FactoryGirl.create(:raw_video) }
+
+        it "should return false" do
+          subject.should_not be_encoded
+        end
+      end
+      
+      context "when has at least one, but not all encoded children" do
+        subject { FactoryGirl.create(:raw_video_with_encoded) }
+        
+        it "should return false" do
+          subject.should_not be_encoded
+        end
+      end
+      
+      context "when has all encoded children" do
+        subject { FactoryGirl.create(:raw_video_with_all_encoded) }
+        
+        it "should return true" do
+          subject.should be_encoded
+        end
+      end
+    end
 
     describe "delegators" do
       describe "url" do

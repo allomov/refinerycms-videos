@@ -46,7 +46,9 @@ module Refinery
     end
   
     def encoded?
-      self.mp4.present? && self.ogv.present? && self.webm.present?
+      !self.encoded_videos.by_format('mp4').empty? && 
+      !self.encoded_videos.by_format('ogv').empty? &&
+      !self.encoded_videos.by_format('webm').empty?
     end
     
   end

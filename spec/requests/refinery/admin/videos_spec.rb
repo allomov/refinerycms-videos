@@ -22,6 +22,26 @@ module Refinery
           page.should have_content("Add new video")
           page.should have_selector("a[href*='/refinery/videos/new']")
         end
+        
+        context "when has raw video with no encoded children" do
+          let!(:raw_video) { FactoryGirl.create(:raw_video) }
+          
+          it "should display one video" do
+            visit refinery_admin_videos_path
+            
+            page.should have_content(raw_video.title)
+          end
+          
+          it "should say the video is currently encoding" do
+            visit refinery_admin_videos_path
+            
+            page.should have_content("Video is encoding")
+          end
+          
+          it "should display unencoded icons for each format" do
+            pending
+          end
+        end
       end
 
       describe "create new video" do
