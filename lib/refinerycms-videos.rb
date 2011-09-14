@@ -1,3 +1,5 @@
+require 'refinerycms-core'
+
 module Refinery
   module Videos
     autoload :Version, 'refinery/videos/version'

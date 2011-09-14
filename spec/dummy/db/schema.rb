@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822185624) do
+ActiveRecord::Schema.define(:version => 20110911182459) do
+
+  create_table "refinery_encoded_videos", :force => true do |t|
+    t.string   "title"
+    t.string   "format"
+    t.string   "file_name"
+    t.string   "file_uid"
+    t.string   "file_mime_type"
+    t.integer  "file_v_height"
+    t.integer  "file_v_width"
+    t.string   "file_ext"
+    t.float    "file_frame_rate"
+    t.float    "file_duration"
+    t.integer  "file_bitrate"
+    t.integer  "file_size"
+    t.string   "file_stream"
+    t.string   "file_codec"
+    t.string   "file_colorspace"
+    t.string   "file_resolution"
+    t.string   "file_audio_stream"
+    t.string   "file_audio_codec"
+    t.integer  "file_audio_sample_rate"
+    t.integer  "file_audio_channels"
+    t.integer  "raw_video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_encoded_videos", ["id"], :name => "index_refinery_encoded_videos_on_id"
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -85,6 +113,32 @@ ActiveRecord::Schema.define(:version => 20110822185624) do
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
+  create_table "refinery_raw_videos", :force => true do |t|
+    t.string   "title"
+    t.string   "file_name"
+    t.string   "file_uid"
+    t.string   "file_mime_type"
+    t.integer  "file_v_height"
+    t.integer  "file_v_width"
+    t.string   "file_ext"
+    t.float    "file_frame_rate"
+    t.float    "file_duration"
+    t.integer  "file_bitrate"
+    t.integer  "file_size"
+    t.string   "file_stream"
+    t.string   "file_codec"
+    t.string   "file_colorspace"
+    t.string   "file_resolution"
+    t.string   "file_audio_stream"
+    t.string   "file_audio_codec"
+    t.integer  "file_audio_sample_rate"
+    t.integer  "file_audio_channels"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_raw_videos", ["id"], :name => "index_refinery_raw_videos_on_id"
+
   create_table "refinery_resources", :force => true do |t|
     t.string   "file_mime_type"
     t.string   "file_name"
@@ -149,35 +203,6 @@ ActiveRecord::Schema.define(:version => 20110822185624) do
   end
 
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
-
-  create_table "refinery_videos", :force => true do |t|
-    t.string   "title"
-    t.string   "raw_name"
-    t.string   "raw_uid"
-    t.string   "mp4_uid"
-    t.string   "ogv_uid"
-    t.string   "webm_uid"
-    t.string   "raw_mime_type"
-    t.integer  "raw_v_height"
-    t.integer  "raw_v_width"
-    t.string   "raw_ext"
-    t.float    "raw_frame_rate"
-    t.float    "raw_duration"
-    t.integer  "raw_bitrate"
-    t.integer  "raw_size"
-    t.string   "raw_stream"
-    t.string   "raw_codec"
-    t.string   "raw_colorspace"
-    t.string   "raw_resolution"
-    t.string   "raw_audio_stream"
-    t.string   "raw_audio_codec"
-    t.integer  "raw_audio_sample_rate"
-    t.integer  "raw_audio_channels"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "refinery_videos", ["id"], :name => "index_refinery_videos_on_id"
 
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"

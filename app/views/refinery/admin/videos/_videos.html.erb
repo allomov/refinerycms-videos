@@ -1,4 +1,4 @@
-<%= will_paginate @videos %>
+<%= will_paginate @raw_videos %>
 <ul class="<%= ['pagination_frame', pagination_css_class].compact.join(' ') %>">
-  <%= render :partial => "video", :collection => @videos %>
+  <%= render :partial => "video", :collection => @raw_videos %>
 </ul>
