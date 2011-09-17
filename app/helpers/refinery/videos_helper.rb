@@ -8,7 +8,7 @@ module Refinery
       video_tag(video_urls, 
         :class => "sublime", 
         :size => "768x428", 
-        :poster => "/images/games/tera/tera_3M_poster.jpg", 
+        :poster => image_path('poster_image.jpg'), 
         :preload => "none"
       )
     end
