@@ -151,5 +151,19 @@ module Refinery
       end
     end
     
+    describe "@html5_sort" do
+      context "when has all encoded children" do
+        subject { FactoryGirl.create(:raw_video_with_all_encoded) }
+        
+        it "should return encoded_videos in the proper html5 order" do
+          sorted_videos = subject.class.html5_sort(subject.encoded_videos)
+          
+          sorted_videos[0].format.should == 'mp4'
+          sorted_videos[1].format.should == 'webm'
+          sorted_videos[2].format.should == 'ogv'
+        end
+      end
+    end
+    
   end
 end
