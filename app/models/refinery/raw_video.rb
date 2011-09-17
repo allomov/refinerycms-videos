@@ -14,14 +14,22 @@ module Refinery
     validates :file, :presence => true
 
     acts_as_indexed :fields => [:name]
-
-    def self.create_from_nginx_upload(nginx_params)
-      video_path = File.join(File.dirname(nginx_params[:path]), nginx_params[:file_name])
-      FileUtils.mv(nginx_params[:path], video_path)
-      begin
-        new_video = self.create(:file => Pathname.new(video_path))
-      ensure
-        FileUtils.rm(video_path)
+    
+    class << self
+      def create_from_nginx_upload(nginx_params)
+        video_path = File.join(File.dirname(nginx_params[:path]), nginx_params[:file_name])
+        FileUtils.mv(nginx_params[:path], video_path)
+        begin
+          new_video = self.create(:file => Pathname.new(video_path))
+        ensure
+          FileUtils.rm(video_path)
+        end
+      end
+      
+      def html5_sort(encoded_videos)
+        encoded_videos.sort do |vid_1, vid_2|
+          self.format_weight(vid_1.format) <=> self.format_weight(vid_2.format)
+        end
       end
     end
     
@@ -48,6 +56,21 @@ module Refinery
       !self.encoded_videos.by_format('ogv').empty? &&
       !self.encoded_videos.by_format('webm').empty?
     end
+    
+    private
+    
+      @@format_weights = {
+        'mp4' => 1,
+        'webm' => 2,
+        'ogv' => 3
+      }
+      
+      class << self
+        def format_weight(format)
+          weight = @@format_weights[format]
+          weight ? weight : 0
+        end
+      end
     
   end
 end
