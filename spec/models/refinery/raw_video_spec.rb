@@ -149,6 +149,12 @@ module Refinery
           subject.url.should == subject.file.url
         end
       end
+      
+      describe "remote_url" do
+        it "should return the same value as the remote_url of the file" do
+          subject.remote_url.should == subject.file.remote_url
+        end
+      end
     end
     
     describe "@html5_sort" do

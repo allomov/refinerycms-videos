@@ -8,7 +8,7 @@ module Refinery
     delegate :name, :uid, :mime_type, :v_height, :v_width, :ext, :frame_rate, :to => :file
     delegate :duration, :bitrate, :size, :stream, :codec, :colorspace, :resolution, :to => :file
     delegate :audio_stream, :audio_codec, :audio_sample_rate, :audio_channels, :to => :file
-    delegate :url, :to => :file
+    delegate :url, :remote_url, :to => :file
 
     validates :file, :presence => true
     validates :raw_video, :presence => true
