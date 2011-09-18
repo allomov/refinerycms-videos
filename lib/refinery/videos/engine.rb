@@ -8,8 +8,7 @@ module Refinery
         app_videos.configure_with(:rails) do |c|
           c.datastore.root_path = Rails.root.join('public', 'system', 'videos').to_s
           c.url_format = '/system/videos/:job/:basename.:format'
-          c.secret = Refinery::Setting.find_or_set(:dragonfly_secret,
-                                                 Array.new(24) { rand(256) }.pack('C*').unpack('H*').first)
+          c.secret = Refinery::Setting.find_or_set(:dragonfly_secret, Array.new(24) { rand(256) }.pack('C*').unpack('H*').first)
         end
                 
         app_videos.define_macro(ActiveRecord::Base, :video_accessor)
