@@ -1,9 +1,9 @@
 Refinery::Application.routes.draw do
   scope(:module => 'refinery') do
-    resources :videos, :only => [:show]
+    resources :raw_videos, :path => 'videos', :only => [:show]
   
-    scope(:path => 'refinery', :as => 'refinery_admin', :module => 'admin') do
-      resources :videos, :except => :show do
+    scope(:module => 'admin', :path => 'refinery', :as => 'refinery_admin') do
+      resources :raw_videos, :path => 'videos', :except => :show do
         collection do
           post :upload
           post :update_positions

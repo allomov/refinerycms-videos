@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Refinery
   module Admin
-    describe 'Videos' do
+    describe 'RawVideos' do
       login_refinery_user
       
       describe "list videos" do
@@ -10,14 +10,14 @@ module Refinery
           before(:each) { Refinery::RawVideo.delete_all }
           
           it "invites to add one" do
-            visit refinery_admin_videos_path
+            visit refinery_admin_raw_videos_path
 
             page.should have_content("There are no Videos yet. Click \"Add New Video\" to add your first video.")
           end
         end
   
         it "should display new video link" do
-          visit refinery_admin_videos_path
+          visit refinery_admin_raw_videos_path
     
           page.should have_content("Add new video")
           page.should have_selector("a[href*='/refinery/videos/new']")
@@ -27,13 +27,13 @@ module Refinery
           let!(:raw_video) { FactoryGirl.create(:raw_video) }
           
           it "should display one video" do
-            visit refinery_admin_videos_path
+            visit refinery_admin_raw_videos_path
             
             page.should have_content(raw_video.title)
           end
           
           it "should say the video is currently encoding" do
-            visit refinery_admin_videos_path
+            visit refinery_admin_raw_videos_path
             
             page.should have_content("Video is encoding")
           end
@@ -44,16 +44,17 @@ module Refinery
         end
         
         context "when has a raw video with all encoded children" do
-          before(:all) do
-            @raw_video = FactoryGirl.create(:raw_video_with_all_encoded)
-            visit refinery_admin_videos_path
+          let!(:raw_video) { FactoryGirl.create(:raw_video_with_all_encoded) }
+
+          it "should display one video" do
+            visit refinery_admin_raw_videos_path
+            
+            page.should have_content(raw_video.title)
           end
           
-          it "should display one video" do            
-            page.should have_content(@raw_video.title)
-          end
-          
-          it "should not say the video is currently encoding" do            
+          it "should not say the video is currently encoding" do
+            visit refinery_admin_raw_videos_path
+            
             page.should_not have_content("Video is encoding")
           end
         end
@@ -61,7 +62,7 @@ module Refinery
 
       describe "create new video" do
         it "should successfully add video" do
-          visit new_refinery_admin_video_path
+          visit new_refinery_admin_raw_video_path
 
           attach_file "raw_video_file", Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
           

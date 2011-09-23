@@ -1,6 +1,6 @@
 module Refinery
   module Admin
-    class VideosController < Refinery::AdminController
+    class RawVideosController < Refinery::AdminController
       
       respond_to :html
 
@@ -18,10 +18,10 @@ module Refinery
         
         if @raw_video
           @raw_video.async_encode(:mp4, :ogv, :webm)
-          flash[:notice] = t('encoding', :scope => 'refinery.admin.videos', :title => @raw_video.title)
+          flash[:notice] = t('encoding', :scope => 'refinery.admin.raw_videos', :title => @raw_video.title)
         end
         
-        respond_with [:refinery_admin, @raw_video], :location => main_app.refinery_admin_videos_path
+        respond_with [:refinery_admin, @raw_video], :location => main_app.refinery_admin_raw_videos_path
       end
       alias_method :upload, :create
       

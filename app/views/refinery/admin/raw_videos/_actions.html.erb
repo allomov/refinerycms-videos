@@ -1,14 +1,14 @@
 <ul>
-  <% if ::Refinery::Admin::VideosController.searchable? %>
+  <% if ::Refinery::Admin::RawVideosController.searchable? %>
     <li>
       <%= render :partial => "/refinery/admin/search",
                   :locals => {
-                    :url => main_app.refinery_admin_videos_path
+                    :url => main_app.refinery_admin_raw_videos_path
                   } %>
     </li>
   <% end %>
   <li>
-    <%= link_to t('.create_new'), main_app.new_refinery_admin_video_path, :class => "add_icon" %>
+    <%= link_to t('.create_new'), main_app.new_refinery_admin_raw_video_path, :class => "add_icon" %>
   </li>
   <li>
     <%= link_to t('.resque'), "/resque", :class => "go_icon" %>

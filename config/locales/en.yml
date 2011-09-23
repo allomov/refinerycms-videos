@@ -8,7 +8,7 @@ en:
       videos:
         title: Videos
     admin:
-      videos:
+      raw_videos:
         encoding: "'%{title}' successfully added. Encoding process will start shortly."
         actions:
           create_new: Add new video
@@ -19,10 +19,10 @@ en:
           title: Videos
           sorry_no_results: Sorry! There are no results found.
           no_items_yet: There are no Videos yet. Click "Add New Video" to add your first video.
-        video:
+        raw_video:
           view_live_html: View this video live <br/><em>(opens in a new window)</em>
           edit: Edit this video
           delete: Remove this video forever
-    videos:
+    raw_videos:
       show:
         other: Other Videos

@@ -1,5 +1,5 @@
 module Refinery
-  class VideosController < ::ApplicationController
+  class RawVideosController < ::ApplicationController
     
     respond_to :html
 

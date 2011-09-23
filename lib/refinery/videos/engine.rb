@@ -31,12 +31,11 @@ module Refinery
       initializer "init plugin", :after => :set_routes_reloader do |app|
         Refinery::Plugin.register do |plugin|
           plugin.name = "videos"
-          plugin.url = app.routes.url_helpers.refinery_admin_videos_path
+          plugin.url = app.routes.url_helpers.refinery_admin_raw_videos_path
           plugin.menu_match = /^\/?(admin|refinery)\/videos/
           plugin.activity = {
             :class => RawVideo,
-            :title => 'name',
-            :url => 'refinery_admin_video_path'
+            :title => 'name'
           }
         end
       end
