@@ -17,21 +17,27 @@ module Refinery
     acts_as_indexed :fields => [:name]
     
     class << self
-      def create_from_nginx_upload(nginx_params)
-        video_path = File.join(File.dirname(nginx_params[:path]), nginx_params[:file_name])
-        FileUtils.mv(nginx_params[:path], video_path)
-        begin
-          new_video = self.create(:file => Pathname.new(video_path))
-        ensure
-          FileUtils.rm(video_path)
-        end
+      def create_video(params, nginx = false)        
+        nginx ? create_video_from_nginx_upload(params[:raw_video]) : create(params[:nginx_upload])
       end
-      
+              
       def html5_sort(encoded_videos)
         encoded_videos.sort do |vid_1, vid_2|
           self.format_weight(vid_1.format) <=> self.format_weight(vid_2.format)
         end
       end
+      
+      protected
+      
+        def create_video_from_nginx_upload(params)
+          video_path = File.join(File.dirname(params[:path]), params[:file_name])
+          FileUtils.mv(params[:path], video_path)
+          begin
+            new_video = create(:file => Pathname.new(video_path))
+          ensure
+            FileUtils.rm(video_path)
+          end
+        end
     end
     
     def encode(format, options = {})

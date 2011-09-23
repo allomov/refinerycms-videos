@@ -10,11 +10,7 @@ module Refinery
               :sortable => false
             
       def create
-        if nginx_upload?
-          @raw_video = RawVideo.create_from_nginx_upload(nginx_params[:raw_video])
-        else
-          @raw_video = RawVideo.create(params[:raw_video])
-        end
+        @raw_video = RawVideo.create_video(params, nginx_upload?)
         
         if @raw_video
           @raw_video.async_encode(:mp4, :ogv, :webm)
@@ -28,11 +24,6 @@ module Refinery
       protected
 
         def nginx_upload?
-          # TODO: Make this configurable
-          params[:nginx_upload]
-        end
-        
-        def nginx_params
           # TODO: Make this configurable
           params[:nginx_upload]
         end
