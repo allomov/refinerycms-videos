@@ -8,7 +8,7 @@ module Refinery
       video_tag(video_urls, 
         :class => "sublime", 
         :size => "768x428", 
-        :poster => image_path('poster_image.jpg'), 
+        :poster => raw_video.poster_image_url,
         :preload => "none"
       )
     end

@@ -58,6 +58,10 @@ module Refinery
       !self.encoded_videos.by_format('webm').empty?
     end
     
+    def poster_image_url
+      self.poster_image.present? ? self.poster_image.image.url : nil
+    end
+    
     private
     
       @@format_weights = {
