@@ -2,6 +2,7 @@ module Refinery
   class RawVideo < ActiveRecord::Base
 
     has_many :encoded_videos
+    belongs_to :poster_image, :class_name => 'Refinery::Image'
     
     video_accessor :file
     attr_accessible :file

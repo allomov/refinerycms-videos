@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911182459) do
+ActiveRecord::Schema.define(:version => 20110923090310) do
 
   create_table "refinery_encoded_videos", :force => true do |t|
     t.string   "title"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20110911182459) do
     t.integer  "file_audio_channels"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "poster_image_id"
   end
 
   add_index "refinery_raw_videos", ["id"], :name => "index_refinery_raw_videos_on_id"
