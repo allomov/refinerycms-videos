@@ -1,6 +1,6 @@
 class CreateRefineryEncodedVideos < ActiveRecord::Migration
   def change
-    create_table ::Refinery::EncodedVideo.table_name do |t|
+    create_table :refinery_encoded_videos do |t|
       t.string :format
       t.string :file_name
       t.string :file_uid
@@ -25,6 +25,6 @@ class CreateRefineryEncodedVideos < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index ::Refinery::EncodedVideo.table_name, :id
+    add_index :refinery_encoded_videos, :id
   end
 end
