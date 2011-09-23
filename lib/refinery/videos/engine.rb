@@ -28,6 +28,13 @@ module Refinery
         Resque.redis = resque_config[Rails.env]
       end
       
+      initializer "refinery.assets.precompile" do |app|
+         app.config.assets.precompile += [
+           "jquery.uploadProgress.js",
+           "refinery/videos/*"
+        ]
+      end
+      
       initializer "init plugin", :after => :set_routes_reloader do |app|
         Refinery::Plugin.register do |plugin|
           plugin.name = "videos"
