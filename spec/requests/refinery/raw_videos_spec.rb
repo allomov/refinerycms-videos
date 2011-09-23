@@ -27,6 +27,21 @@ module Refinery
             page.should have_xpath('//video/source', :src => encoded_video.url)
           end
         end
+                
+        it "should have a poster image" do
+          page.should have_xpath("//video", :poster => raw_video.poster_image_url)
+        end
+        
+        context "when has no poster image" do
+          before(:each) do
+            raw_video.poster_image = nil
+            raw_video.save
+          end
+          
+          it "should not have a poster image" do
+            page.should_not have_xpath("//video[@poster='#{raw_video.poster_image_url}']")
+          end
+        end
       end
     end
   end

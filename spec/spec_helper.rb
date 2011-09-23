@@ -12,13 +12,13 @@ def setup_environment
 
   RSpec.configure do |config|
     config.mock_with :rspec
-    config.use_transactional_fixtures = false
   end
 end
 
 def each_run
   require 'factory_girl_rails'
   require 'refinerycms-testing'
+  require 'refinery/testing/factories'
   
   Dir[File.expand_path("../../app/models/**/*.rb", __FILE__)].each do |model|
     load model

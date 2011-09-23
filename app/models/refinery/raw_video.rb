@@ -2,6 +2,7 @@ module Refinery
   class RawVideo < ActiveRecord::Base
 
     has_many :encoded_videos
+    belongs_to :poster_image, :class_name => 'Refinery::Image'
     
     video_accessor :file
     attr_accessible :file
@@ -55,6 +56,10 @@ module Refinery
       !self.encoded_videos.by_format('mp4').empty? && 
       !self.encoded_videos.by_format('ogv').empty? &&
       !self.encoded_videos.by_format('webm').empty?
+    end
+    
+    def poster_image_url
+      self.poster_image.present? ? self.poster_image.image.url : nil
     end
     
     private

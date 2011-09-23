@@ -8,6 +8,11 @@
     <%= f.file_field :file, :multiple => (true unless @raw_video.persisted?) %>
   </div>
   
+  <div class='field'>
+    <%= f.label :poster_image %>
+    <%= render :partial => "/refinery/admin/image_picker", :locals => {:f => f, :field => :id, :image => @raw_video.poster_image } %>
+  </div>
+  
   <%= render :partial => "/refinery/admin/form_actions",
               :locals => {
                 :f => f,
