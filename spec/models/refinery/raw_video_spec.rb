@@ -142,6 +142,40 @@ module Refinery
         end
       end
     end
+    
+    describe ".create_video" do
+      before(:each) { subject.class.delete_all }
+      
+      context "when non NGINX upload" do
+        it "should create a new video from the given parameters" do
+          new_video = subject.class.create_video(:raw_video => { 
+            :file => Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov")
+          })
+          
+          subject.class.all.should have(1).items
+        end
+      end
+    end
+    
+    describe ".create_video_from_nginx_upload" do
+      before(:each) do
+        subject.class.delete_all
+        FileUtils.mkdir_p(Refinery::Videos::Engine.root.join("spec/tmp"))
+        @path = Refinery::Videos::Engine.root.join("spec/tmp/001")
+        @file_name = 'test-movie.mov'
+        FileUtils.cp(Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov"), @path)
+      end
+      
+      it "should create a new video from the given parameters" do
+        new_video = subject.class.send(:create_video_from_nginx_upload,  
+          :file_name => @file_name,
+          :path => @path,
+          :content_type => 'video/quicktime'
+        )
+        
+        subject.class.all.should have(1).items
+      end
+    end
 
     describe "delegators" do
       describe "url" do

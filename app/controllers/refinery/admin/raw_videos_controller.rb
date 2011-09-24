@@ -10,7 +10,7 @@ module Refinery
               :sortable => false
             
       def create
-        @raw_video = RawVideo.create_video(params, nginx_upload?)
+        @raw_video = RawVideo.create_video(params)
         
         if @raw_video
           @raw_video.async_encode(:mp4, :ogv, :webm)
@@ -21,12 +21,6 @@ module Refinery
       end
       alias_method :upload, :create
       
-      protected
-
-        def nginx_upload?
-          # TODO: Make this configurable
-          params[:nginx_upload]
-        end
     end
   end
 end

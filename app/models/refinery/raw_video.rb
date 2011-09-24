@@ -16,9 +16,15 @@ module Refinery
 
     acts_as_indexed :fields => [:name]
     
+    NGINX_UPLOAD_KEY = :nginx_upload
+    
     class << self
-      def create_video(params, nginx = false)        
-        nginx ? create_video_from_nginx_upload(params[:raw_video]) : create(params[:nginx_upload])
+      def create_video(params)
+        if params.has_key?(NGINX_UPLOAD_KEY)
+          create_video_from_nginx_upload(params[NGINX_UPLOAD_KEY][:raw_video])
+        else
+          create(params[:raw_video])
+        end
       end
               
       def html5_sort(encoded_videos)
