@@ -175,6 +175,16 @@ module Refinery
         
         subject.class.all.should have(1).items
       end
+      
+      it "should remove the temporary uploaded video file" do
+        new_video = subject.class.send(:create_video_from_nginx_upload,  
+          :file_name => @file_name,
+          :path => @path,
+          :content_type => 'video/quicktime'
+        )
+        
+        File.exists?(@path).should_not be_true
+      end
     end
 
     describe "delegators" do
