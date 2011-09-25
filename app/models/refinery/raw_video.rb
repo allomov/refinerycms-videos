@@ -16,12 +16,12 @@ module Refinery
 
     acts_as_indexed :fields => [:name]
     
-    NGINX_UPLOAD_KEY = :nginx_upload
+    NGINX_UPLOAD_KEY = 
     
     class << self
       def create_video(params)
-        if params.has_key?(NGINX_UPLOAD_KEY)
-          create_video_from_nginx_upload(params[NGINX_UPLOAD_KEY][:raw_video])
+        if Videos::Options.use_nginx_upload_module
+          create_video_from_nginx_upload(params[:nginx_upload][:raw_video])
         else
           create(params[:raw_video])
         end

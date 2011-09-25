@@ -1,8 +1,10 @@
 require 'refinerycms-core'
+require 'refinery/generators/videos_generator'
 
-module Refinery
+module Refinery  
   module Videos
     autoload :Version, 'refinery/videos/version'
+    autoload :Options, 'refinery/videos/options'
     
     class << self
       attr_accessor :root
