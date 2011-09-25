@@ -10,7 +10,7 @@
   
   <div class='field'>
     <%= f.label :poster_image %>
-    <%= render :partial => "/refinery/admin/image_picker", :locals => {:f => f, :field => :id, :image => @raw_video.poster_image } %>
+    <%= render :partial => "/refinery/admin/image_picker", :locals => {:f => f, :field => :poster_image_id, :image => @raw_video.poster_image } %>
   </div>
   
   <%= render :partial => "/refinery/admin/form_actions",
