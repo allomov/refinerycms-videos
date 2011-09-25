@@ -2,12 +2,12 @@
 <%= stylesheet_link_tag "refinery/admin/upload_progress" %>
 <% end %>
 <% content_for :javascripts do %>
-<%= javascript_include_tag "refinery/admin/videos.j" %>
+<%= javascript_include_tag "refinery/admin/videos" %>
 <script type="text/javascript">
   $(function() {
     $('form').uploadProgress({
-  		jqueryPath: "/javascripts/jquery.js",
-  		uploadProgressPath: "/javascripts/jquery.uploadProgress.js",
+  		jqueryPath: '<%= asset_path "jquery.js" %>',
+  		uploadProgressPath: '<%= asset_path "jquery.uploadProgress.js" %>',
   		uploading: function(upload) {
   		  $('#percents').html(upload.percents+'%');
   		},
