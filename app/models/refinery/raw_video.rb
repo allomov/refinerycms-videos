@@ -4,7 +4,7 @@ module Refinery
     has_many :encoded_videos
     
     belongs_to :poster_image, :class_name => 'Refinery::Image'
-    attr_accessible :poster_image
+    attr_accessible :poster_image_id
     
     video_accessor :file
     attr_accessible :file
