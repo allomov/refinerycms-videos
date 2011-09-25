@@ -16,12 +16,10 @@ module Refinery
 
     acts_as_indexed :fields => [:name]
     
-    NGINX_UPLOAD_KEY = 
-    
     class << self
       def create_video(params)
         if Videos::Options.use_nginx_upload_module
-          create_video_from_nginx_upload(params[:nginx_upload][:raw_video])
+          create_video_from_nginx_upload(params)
         else
           create(params[:raw_video])
         end
@@ -36,10 +34,11 @@ module Refinery
       protected
       
         def create_video_from_nginx_upload(params)
-          video_path = File.join(File.dirname(params[:path]), params[:file_name])
-          FileUtils.mv(params[:path], video_path)
+          video_path = File.join(File.dirname(params[:nginx_upload][:path]), params[:nginx_upload][:file_name])
+          FileUtils.mv(params[:nginx_upload][:path], video_path)
           begin
-            new_video = create(:file => Pathname.new(video_path))
+            params[:raw_video][:file] = Pathname.new(video_path)
+            new_video = create(params[:raw_video])
           ensure
             FileUtils.rm(video_path)
           end

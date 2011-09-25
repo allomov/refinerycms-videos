@@ -164,24 +164,26 @@ module Refinery
         @path = Refinery::Videos::Engine.root.join("spec/tmp/001")
         @file_name = 'test-movie.mov'
         FileUtils.cp(Refinery::Videos::Engine.root.join("spec/samples/test-movie.mov"), @path)
+        @params = {
+          :nginx_upload => {
+            :file_name => @file_name,
+            :path => @path,
+            :content_type => 'video/quicktime'
+          },
+          :raw_video => {
+            
+          }
+        }
       end
       
       it "should create a new video from the given parameters" do
-        new_video = subject.class.send(:create_video_from_nginx_upload,  
-          :file_name => @file_name,
-          :path => @path,
-          :content_type => 'video/quicktime'
-        )
+        new_video = subject.class.send(:create_video_from_nginx_upload, @params)
         
         subject.class.all.should have(1).items
       end
       
       it "should remove the temporary uploaded video file" do
-        new_video = subject.class.send(:create_video_from_nginx_upload,  
-          :file_name => @file_name,
-          :path => @path,
-          :content_type => 'video/quicktime'
-        )
+        new_video = subject.class.send(:create_video_from_nginx_upload, @params)
         
         File.exists?(@path).should_not be_true
       end
