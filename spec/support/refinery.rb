@@ -8,11 +8,13 @@ RSpec.configure do |config|
     Refinery::Images::Options.reset!
     Refinery::Resources::Options.reset!
     Refinery::Pages::Options.reset!
+    Refinery::Videos::Options.reset!
   end
 
   config.after(:each) do
     Refinery::Images::Options.reset!
     Refinery::Resources::Options.reset!
     Refinery::Pages::Options.reset!
+    Refinery::Videos::Options.reset!
   end
 end

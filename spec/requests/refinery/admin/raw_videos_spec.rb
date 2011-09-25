@@ -59,7 +59,27 @@ module Refinery
           end
         end
       end
-
+      
+      describe "#new" do
+        context "when upload_progress_uri is set to defualt (nil)" do
+          it "should not show an upload progress bar" do
+            visit new_refinery_admin_raw_video_path
+            
+            page.should_not have_css('div#progressbar')
+          end
+        end
+        
+        context "when upload_progress_uri is set to /progress" do
+          before(:each) { Refinery::Videos::Options.upload_progress_uri = '/progress' }
+          
+          it "should show an upload progress bar" do
+            visit new_refinery_admin_raw_video_path
+            
+            page.should have_css('div#progressbar')
+          end
+        end
+      end
+      
       describe "create new video" do
         it "should successfully add video" do
           visit new_refinery_admin_raw_video_path

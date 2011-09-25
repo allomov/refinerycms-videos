@@ -4,7 +4,7 @@ module Refinery
       include Rails::Railtie::Configurable
 
       DEFAULT_USE_NGINX_UPLOAD_MODULE = false
-      DEFAULT_UPLOAD_PROGRESS_URI = '/progress'
+      DEFAULT_UPLOAD_PROGRESS_URI = nil
 
       cattr_accessor :use_nginx_upload_module
       self.use_nginx_upload_module = DEFAULT_USE_NGINX_UPLOAD_MODULE
