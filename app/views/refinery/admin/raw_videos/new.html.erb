@@ -1,3 +1,25 @@
-<%= render :partial => "form" %>
+<%= form_for [main_app, :refinery_admin, @raw_video], :url => main_app.upload_refinery_admin_raw_videos_path, :html => { :method => :post, :multipart => true } do |f| -%>
+  <%= render :partial => "/refinery/admin/error_messages", :locals => {
+          :object => @raw_video,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.file_field :file %>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :poster_image %>
+    <%= render :partial => "/refinery/admin/image_picker", :locals => {:f => f, :field => :poster_image_id, :image => @raw_video.poster_image } %>
+  </div>
+  
+  <%= render :partial => "/refinery/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'refinery.videos.video'),
+                :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => 'hi')
+              } %>
+<% end -%>
 
 <%= render :partial => 'upload_progress_bar' if Refinery::Videos::Options.upload_progress_uri %>
