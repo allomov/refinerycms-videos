@@ -2,4 +2,7 @@ Refinery::Videos::Options.configure do |config|
   # Configures the videos engine to expect video uploads to come from an NGINX
   # server compiled with the nginx upload module.
   # config.use_nginx_upload_module = <%= Refinery::Videos::Options::DEFAULT_USE_NGINX_UPLOAD_MODULE %>
+  
+  # Configures the URI that upload progress bars get their status from
+  # config.upload_progress_uri = '/progress'
 end

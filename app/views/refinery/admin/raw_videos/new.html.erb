@@ -12,7 +12,7 @@
   		  $('#percents').html(upload.percents+'%');
   		},
   		progressBar: "#progressbar",
-  		progressUrl: "/progress",
+  		progressUrl: '<%= Refinery::Videos::Options.upload_progress_uri %>',
   		interval: 2000,
   		dataType: 'json'
     });
