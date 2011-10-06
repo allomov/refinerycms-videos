@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(:version => 20110923090310) do
 
   create_table "refinery_encoded_videos", :force => true do |t|
-    t.string   "title"
     t.string   "format"
     t.string   "file_name"
     t.string   "file_uid"
@@ -114,7 +113,6 @@ ActiveRecord::Schema.define(:version => 20110923090310) do
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
   create_table "refinery_raw_videos", :force => true do |t|
-    t.string   "title"
     t.string   "file_name"
     t.string   "file_uid"
     t.string   "file_mime_type"
