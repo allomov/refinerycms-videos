@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency 'refinerycms-core', '~> 2.0.0'
+  # s.add_dependency 'refinerycms-core', '~> 2.0.0'
+  s.add_dependency 'refinerycms-core', '~> 1.0.8'
   s.add_dependency 'dragonfly-ffmpeg', '~> 0.1.0'
   s.add_dependency 'resque', '~> 1.17.1'
 
