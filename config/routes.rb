@@ -1,3 +1,5 @@
+require 'resque/server'
+
 Refinery::Application.routes.draw do
   scope(:module => 'refinery') do
     resources :raw_videos, :path => 'videos', :only => [:show]
@@ -11,4 +13,6 @@ Refinery::Application.routes.draw do
       end
     end
   end
+
+  mount Resque::Server, :at => "/resque"
 end
